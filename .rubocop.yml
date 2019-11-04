@@ -1,0 +1,121 @@
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
+
+## Metrics
+
+# Maximum class length of 100 lines
+Metrics/ClassLength:
+  Max: 100
+
+# Maximum module length of 100 lines
+Metrics/ModuleLength:
+  Max: 100
+
+# Maximum method length of 10 lines
+Metrics/MethodLength:
+  Max: 10
+
+# 100 character width
+Metrics/LineLength:
+  Max: 100
+
+## Style
+
+# Allow UTF-8 chars in comments
+Style/AsciiComments:
+  Enabled: false
+
+# We don't write documentation here :D
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/Lambda:
+  EnforcedStyle: literal
+
+# Double quotes for "strings"
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Single quotes within interpolated strings: "hello#{hash['there']}"
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
+
+# Allow struct inheritance
+Style/StructInheritance:
+  Enabled: false
+
+# Mostly we use == > and < but sometimes we like to use zero?
+Style/NumericPredicate:
+  Enabled: false
+
+# We only want parentheses when the ternary is complex
+# foo = bar? ? a : b
+# foo = bar.baz? ? a : b
+# foo = (bar && baz) ? a : b
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+
+## Layout
+
+# Align hashes neatly
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+# Dave likes his dots trailing
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Empty lines between methods unless they are one liners
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
+# Allow extra spacing for alignment
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+  ForceEqualSignAlignment: false
+
+# More flexible array alignment
+Layout/IndentFirstArrayElement:
+  EnforcedStyle: consistent
+
+# More flexible hash alignment
+Layout/IndentFirstHashElement:
+  EnforcedStyle: consistent
+
+
+## Naming
+
+# We aren't sure how we like our numbered variables
+Naming/VariableNumber:
+  Enabled: false
+
+Naming/PredicateName:
+  Exclude:
+    - 'spec/**/*'
+
+# We prefer memoized methods to look like this:
+#
+# def my_method
+#   @_my_method ||= long_running_process
+# end
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: required
+
+## Rails
+
+# Pretty sure all of our _blank links are internal
+Rails/LinkToBlank:
+  Enabled: false
