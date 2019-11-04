@@ -1,14 +1,35 @@
 # frozen_string_literal: true
 
-class Mug
+require_relative "basic_mug"
+
+class Mug < BasicMug
+  attr_reader :beverage
+
+  DOCS = "https://dayofcode.co.uk"
+
+  def glug
+    raise "Oh no! Empty mug" if empty?
+
+    @beverage = nil
+    puts "(Your beverage has been glugged)"
+  end
+
+  def empty?
+    return true unless @beverage
+
+    false
+  end
+
   def fill_with(beverage: :coffee)
-    @beverage = beverage
-    puts "Your mug is filled with #{beverage}"
+    raise "Mug already full" unless empty?
+
+    super
   end
 
   def use
     puts "What is your beverage of choice?"
     fill_with(beverage: gets.chomp)
-    "Enjoy your #{@beverage} on Day of Code!"
+    (/darwin/ =~ RUBY_PLATFORM) ? `open "#{DOCS}"` : `start "#{DOCS}"`
+    "Enjoy your #{@beverage} whilst you read #{DOCS}"
   end
 end

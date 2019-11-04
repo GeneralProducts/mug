@@ -2,9 +2,9 @@
 
 require "spec_helper"
 require "byebug"
-require_relative "../mega_mug"
+require_relative "../mug"
 
-RSpec.describe MegaMug do
+RSpec.describe Mug do
   let(:subject) { described_class.new }
   let(:beverage) { nil }
 
@@ -38,6 +38,33 @@ RSpec.describe MegaMug do
 
       it "is not empty" do
         expect(subject.empty?).to be false
+      end
+    end
+  end
+
+  describe "glugging the mug" do
+    it "is empty" do
+      expect(subject.empty?).to be true
+    end
+
+    it "is not gluggable" do
+      expect{subject.glug}.to raise_error("Oh no! Empty mug")
+    end
+
+    context "when full" do
+      let(:beverage) { "iced tea" }
+
+      before do
+        subject.fill_with(beverage: beverage)
+      end
+
+      it "is gluggable" do
+        expect(subject.glug).to be(nil)
+      end
+
+      it "is not empty" do
+        subject.glug
+        expect(subject.empty?).to be true
       end
     end
   end
