@@ -4,11 +4,13 @@ On the terminal command prompt, type
 
 And then
 
-`require_relative "mega_mug"`
+`require_relative "mug"`
 
 Then you can try the following
 
 ```
-mug = MegaMug.new
+mug = Mug.new
 mug.use
+mug.fill_with(beverage: "iced tea")
+mug.glug
 ```
