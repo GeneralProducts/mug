@@ -14,10 +14,20 @@ class Mug < BasicMug
     puts "(Your beverage has been glugged)"
   end
 
+  def sip
+    raise "Oh no! Empty mug" if empty?
+
+    puts "(Your beverage has been sipped)"
+  end
+
   def empty?
     return true unless @beverage
 
     false
+  end
+
+  def full?
+    !empty?
   end
 
   def fill_with(beverage: :coffee)
